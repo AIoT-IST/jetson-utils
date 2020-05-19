@@ -111,6 +111,7 @@ gstCamera::~gstCamera()
 // onEOS
 void gstCamera::onEOS(_GstAppSink* sink, void* user_data)
 {
+	bOnEOS = true;
 	printf(LOG_GSTREAMER "gstCamera onEOS %s\n", bOnEOS ? "true" : "false");
 }
 
