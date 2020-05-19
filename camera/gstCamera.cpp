@@ -111,7 +111,7 @@ gstCamera::~gstCamera()
 // onEOS
 void gstCamera::onEOS(_GstAppSink* sink, void* user_data)
 {
-	printf(LOG_GSTREAMER "gstCamera onEOS\n");
+	printf(LOG_GSTREAMER "gstCamera onEOS %s\n", bOnEOS ? "true" : "false");
 }
 
 
@@ -419,9 +419,7 @@ bool gstCamera::buildLaunchStr( gstCameraSrc src )
 		if( src == GST_SOURCE_NVCAMERA )
 			ss << "nvcamerasrc fpsRange=\"30.0 30.0\" ! video/x-raw(memory:NVMM), width=(int)" << mWidth << ", height=(int)" << mHeight << ", format=(string)NV12 ! nvvidconv flip-method=" << flipMethod << " ! "; //'video/x-raw(memory:NVMM), width=(int)1920, height=(int)1080, format=(string)I420, framerate=(fraction)30/1' ! ";
 		else if( src == GST_SOURCE_NVARGUS )
-			ss << "nvarguscamerasrc sensor-id=" << mSensorCSI << " ! video/x-raw(memory:NVMM), width=(int)" << mWidth << ", height=(int)" << mHeight << ", framerate=30/1, format=(string)NV12 ! nvvidconv flip-method=" << flipMethod << " ! ";
-		
-		ss << "video/x-raw ! appsink name=mysink";
+			ss << "filesrc location=test.mp4 ! qtdemux name=demux demux.video_0 ! h264parse ! omxh264dec ! nvvidconv ! video/x-raw,format=NV12 ! appsink name=mysink";
 	}
 	else
 	{

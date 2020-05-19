@@ -265,7 +265,11 @@ public:
 	 * Default camera height, unless otherwise specified during Create()
  	 */
 	static const uint32_t DefaultHeight = 720;
-	
+
+	/**
+	* Default state of end of stream
+	*/
+	inline static bool bOnEOS = false;
 private:
 	static void onEOS(_GstAppSink* sink, void* user_data);
 	static GstFlowReturn onPreroll(_GstAppSink* sink, void* user_data);
