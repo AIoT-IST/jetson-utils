@@ -419,7 +419,7 @@ bool gstCamera::buildLaunchStr( gstCameraSrc src )
 		if( src == GST_SOURCE_NVCAMERA )
 			ss << "nvcamerasrc fpsRange=\"30.0 30.0\" ! video/x-raw(memory:NVMM), width=(int)" << mWidth << ", height=(int)" << mHeight << ", format=(string)NV12 ! nvvidconv flip-method=" << flipMethod << " ! "; //'video/x-raw(memory:NVMM), width=(int)1920, height=(int)1080, format=(string)I420, framerate=(fraction)30/1' ! ";
 		else if( src == GST_SOURCE_NVARGUS )
-			ss << "filesrc location=test.mp4 ! qtdemux name=demux demux.video_0 ! h264parse ! omxh264dec ! nvvidconv ! video/x-raw,format=NV12 ! appsink name=mysink";
+			ss << "filesrc location=../../../data/networks/SSD-Mobilenet-v2/test.mp4 ! qtdemux name=demux demux.video_0 ! h264parse ! omxh264dec ! nvvidconv ! video/x-raw,format=NV12 ! appsink name=mysink";
 	}
 	else
 	{
